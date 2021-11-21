@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Float布局</title>
+    <style>
+
+        .layout article div {
+            min-height: 150px;
+        }
+
+        .layout .left{
+            float: left;
+            width: 300px;
+            background: red;
+        }
+
+        .layout .center{
+            background: yellow;
+        }
+
+        .layout .right{
+            float: right;
+            width: 300px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout">
+        <h1>三栏布局</h1>
+        <article>
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="center">
+                1、这是三栏布局浮动解决方案
+                2、这是三栏布局浮动解决方案
+                3、这是三栏布局浮动解决方案
+            </div>
+        </article>
+    </section>
+</body>
+</html>

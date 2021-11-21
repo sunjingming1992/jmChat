@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+    <style>
+        .div_header{ grid-area: header;}
+        .div_left{ grid-area: left;}
+        .div_right{ grid-area: right;}
+        .div_footer{ grid-area: footer;}
+
+        /*已发送或已接受的消息展示区域
+        里面有几种样式
+        1、别人发送的消息
+        2、自己发送的消息
+        消息类型: 系统  图片  文本
+        */
+        .div_message{
+            grid-area: message;
+            margin-bottom: 5px;
+            min-height: 400px;
+            background-color: blanchedalmond;
+            padding: 10px;
+            text-align: left;
+            max-height: 600px;
+            overflow: scroll;
+        }
+        .txt_message{
+            grid-area: message_txt;
+            min-height: 40px;
+            font-size: 30px;
+            margin-left: 5px;
+        }
+        .btn_area{
+            grid-area: btn_area;
+
+        }
+        .btn_area button{
+            font-size: 26px;
+        }
+        .div_main{
+            grid-area: main;
+            display: grid;
+            grid-template-areas:
+            'message message message message'
+            'message_txt message_txt btn_area btn_area';
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                    'header header header header header header'
+                    'left main main main main right'
+        'footer footer footer footer footer footer';
+            grid-gap: 1px;
+            background-color: #2196F3;
+            padding: 1px;
+        }
+
+        .grid-container > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 8px 0;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="div_header">行舟聊天室</div>
+        <div class="div_left">
+            <ul>
+                <li>玩家_1</li>
+                <li>玩家_2</li>
+                <li>玩家_3</li>
+            </ul>
+        </div>
+        <div class="div_main" id="app">
+            <div class="div_message">
+                <p v-for="(message,index) in history_msg" v-bind:key="message">{{message}}</p>
+            </div>
+            <input class="txt_message" v-model="send_msg"/>
+            <div class="btn_area">
+                <button id="btn_send">发送</button>&nbsp;&nbsp;<button id="btn_clean">清屏</button>
+            </div>
+        </div>
+        <div class="div_right">right</div>
+        <div class="div_footer">footer</div>
+    </div>
+</body>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/vue.js"></script>
+<script>
+<!--客户端websock -->
+var ws = new WebSocket("ws://192.168.43.83:9502");
+
+ws.onopen = function(evt) {
+    var receive_data = evt.data;
+};
+
+/**
+ * 收取消息
+ * */
+ws.onmessage = function(evt){
+    var receive_data = evt.data;
+    vm.history_msg.push(receive_data);
+    //console.log("Receive:"+evt.data);
+};
+
+ws.onclose = function(evt) {
+  //console.log("Connection closed.");
+    vm.history_msg.push("Connection closed.");
+};
+
+var obj = {
+    history_msg: [],
+    send_msg: 'hello',
+}
+var vm = new Vue({
+    el: '#app',
+    data: obj
+})
+
+/**
+ * 发送消息
+ */
+$('#btn_send').click(function(){
+    var str_message = vm.send_msg;
+    ws.send(str_message);
+});
+
+</script>
+</html>

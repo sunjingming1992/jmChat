@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绝对布局</title>
+    <style>
+        .layout article div{
+            position: absolute;
+        }
+
+        .layout .left {
+            left:0;
+            width: 300px;
+            background: red;
+        }
+
+        .layout .center {
+            right: 300px;
+            left: 300px;
+            background: yellow;
+        }
+
+        .layout .right {
+            right: 0;
+            width: 300px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout">
+        <h1>三栏布局</h1>
+        <article>
+            <div class="left">33</div>
+            <div class="center">
+                1、三栏绝对定位解决方案
+            </div>
+            <div class="right">33</div>
+        </article>
+    </section>
+</body>
+</html>

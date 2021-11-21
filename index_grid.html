@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网格布局</title>
+    <style>
+        .layout .left-center-right{
+            display: grid;
+            width: 100%;
+            grid-template-columns: 300px auto 300px;
+            grid-template-rows: 150px
+        }
+
+        .layout .left{
+            background: red;
+        }
+
+        .layout .center{
+            background: yellow;
+        }
+
+        .layout .right{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout">
+        <h1>三栏布局</h1>
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="center">
+                三栏布局网格布局解决方案
+            </div>
+            <div class="right"></div>
+        </article>
+    </section>
+</body>
+</html>

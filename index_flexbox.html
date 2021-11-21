@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlexBox布局</title>
+    <style>
+        .layout .left-center-right {
+            display: flex;
+        }
+
+        .layout .left{
+            width: 300px;
+            background: red;
+        }
+
+        .layout .center{
+            background: yellow;
+            flex: 1;
+        }
+
+        .layout .right{
+            width: 300px;
+            background: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="layout">
+        <h1>三栏布局</h1>
+        <article class="left-center-right">
+            <div class="left"></div>
+            <div class="center">
+                三栏布局弹性盒子解决方案
+            </div>
+            <div class="right"></div>
+        </article>
+    </section>
+</body>
+</html>
